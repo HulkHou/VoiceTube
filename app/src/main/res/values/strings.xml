@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">VoiceTube</string>
+    <string name="title_learning">Learning</string>
+    <string name="title_blog">Blog</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_speaking">Speaking</string>
+    <string name="title_more">More</string>
+
+    <string name="learning_search">搜索喜欢的影片</string>
+    <string name="learning_settings_1">我的单词库</string>
+    <string name="learning_settings_2">收藏的影片</string>
+    <string name="learning_settings_3">看过的影片</string>
+
+    <string name="learning_tab_levels">Levels</string>
+    <string name="learning_tab_channels">Channels</string>
+    <string name="learning_tab_accents">Accents</string>
+    <string name="learning_tab_videos">Videos</string>
+
+    
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/learning_search_menu"
+        android:icon="@drawable/ic_learning_search_black_24dp"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:orderInCategory="1"
+        android:title="@string/learning_search"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/learning_settings_menu_1"
+        android:orderInCategory="1"
+        android:title="@string/learning_settings_1"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/learning_settings_menu_2"
+        android:orderInCategory="2"
+        android:title="@string/learning_settings_2"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/learning_settings_menu_3"
+        android:orderInCategory="3"
+        android:title="@string/learning_settings_3"
+        app:showAsAction="never" />
+</menu>
