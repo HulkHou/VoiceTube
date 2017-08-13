@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,6 +28,13 @@ public class LearningFragment extends Fragment {
 
     private Context context = MainActivity.getInstance();
 
+    private FragmentManager fragmentManager;
+    private FragmentTransaction fragmentTransaction;
+    private FragmentTransaction fragmentTransactionTab;
+    private LevelsFragment levelsFragment;
+    private ChannelsFragment channelsFragment;
+
+
     public LearningFragment() {
         // Requires empty public constructor
     }
@@ -43,11 +52,20 @@ public class LearningFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //获取 LearningFragment 子管理器
+        fragmentManager = getChildFragmentManager();
+
+        fragmentTransaction = fragmentManager.beginTransaction();
+        levelsFragment = LevelsFragment.newInstance();
+        fragmentTransaction.replace(R.id.view_learning, levelsFragment);
+        fragmentTransaction.commit();
+
         View view = inflater.inflate(R.layout.learning_frag, container, false);
 
         //设置 Toolbar 相关操作
         //直接在 Fragment 中使用Toolbar ，不与ActionBar 关联使用
-        mToolbar = (Toolbar) view.findViewById(R.id.learning_toolbar);
+        mToolbar = (Toolbar) view.findViewById(R.id.toolbar_learning);
         mToolbar.inflateMenu(R.menu.learning_toolbar_menu);
 
         //搜索框相关
@@ -88,12 +106,50 @@ public class LearningFragment extends Fragment {
         });
 
         //标签页相关
-        mTabLayout = (TabLayout) view.findViewById(R.id.learning_tab);
+        mTabLayout = (TabLayout) view.findViewById(R.id.tab_learning);
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Toast.makeText(context, tab.getText(), Toast.LENGTH_SHORT).show();
+                fragmentTransactionTab = fragmentManager.beginTransaction();
+                switch (tab.getPosition()) {
+
+                    //Learning下第一个标签页 Levels
+                    case 0:
+                        //如果 channelsFragment 不等于空，就把他隐藏掉
+                        if (channelsFragment != null) {
+                            Log.d(TAG, "onTabSelected: channels is not null");
+                            fragmentTransactionTab.hide(channelsFragment);
+                        }
+
+                        //如果fragment还没创建就创建一个，然后add
+                        //如果fragment已经创建了，就show
+                        if (levelsFragment == null) {
+                            Log.d(TAG, "onTabSelected: levels is null");
+                            levelsFragment = LevelsFragment.newInstance();
+                            fragmentTransactionTab.add(R.id.view_learning, levelsFragment);
+                        } else
+                            fragmentTransactionTab.show(levelsFragment);
+                        break;
+                    //Learning下第二个标签页 Channels
+                    case 1:
+                        //如果 levelsFragment 不等于空，就把他隐藏掉
+                        if (levelsFragment != null) {
+                            Log.d(TAG, "onTabSelected: levels is not null");
+                            fragmentTransactionTab.hide(levelsFragment);
+                        }
+
+                        //如果fragment还没创建就创建一个，然后add
+                        //如果fragment已经创建了，就show
+                        if (channelsFragment == null) {
+                            Log.d(TAG, "onTabSelected: channels is null");
+                            channelsFragment = ChannelsFragment.newInstance();
+                            fragmentTransactionTab.add(R.id.view_learning, channelsFragment);
+                        } else
+                            fragmentTransactionTab.show(channelsFragment);
+                        break;
+                }
+                fragmentTransactionTab.commit();
             }
 
             @Override

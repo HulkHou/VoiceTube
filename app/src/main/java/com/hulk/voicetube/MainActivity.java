@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         //获得Fragment 事务处理器
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         learningFragment = LearningFragment.newInstance();
-        fragmentTransaction.replace(R.id.content_view, learningFragment);
+        fragmentTransaction.replace(R.id.view_content, learningFragment);
         fragmentTransaction.commit();
 
-        navigationView = (BottomNavigationView) findViewById(R.id.navigation_view);
+        navigationView = (BottomNavigationView) findViewById(R.id.view_navigation);
 
         //为navigation设置监听
         navigationView.setOnNavigationItemSelectedListener(
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                 //如果fragment已经创建了，就show
                                 if (learningFragment == null) {
                                     learningFragment = LearningFragment.newInstance();
-                                    fragmentTransaction1.add(R.id.content_view, learningFragment);
+                                    fragmentTransaction1.add(R.id.view_content, learningFragment);
                                 } else
                                     fragmentTransaction1.show(learningFragment);
                                 break;
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 if (blogFragment == null) {
                                     blogFragment = BlogFragment.newInstance();
-                                    fragmentTransaction1.add(R.id.content_view, blogFragment);
+                                    fragmentTransaction1.add(R.id.view_content, blogFragment);
                                 } else
                                     fragmentTransaction1.show(blogFragment);
                                 break;
