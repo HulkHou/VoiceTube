@@ -7,17 +7,24 @@ import java.io.Serializable;
  */
 
 public class Videos implements Serializable {
-    //新闻标题，内容，图片
+    //视频图片，标题，播放次数，收藏次数
     private String title;
-    private String desc;
     private int photoId;
+    private String playTimes;
+    private String collectionTimes;
 
     /**
      * Constructs a new instance of {@code Object}.
      */
-    public Videos(String title, String desc, int photoId) {
+    public Videos(String title, int photoId, String playTimes, String collectionTimes) {
         this.title = title;
-        this.desc = desc;
+        this.photoId = photoId;
+        this.playTimes = playTimes;
+        this.collectionTimes = collectionTimes;
+    }
+
+    public Videos(String title, int photoId) {
+        this.title = title;
         this.photoId = photoId;
     }
 
@@ -29,19 +36,28 @@ public class Videos implements Serializable {
         this.title = title;
     }
 
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     public int getPhotoId() {
         return photoId;
     }
 
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
+
+    }
+
+    public String getPlayTimes() {
+        return playTimes;
+    }
+
+    public void setPlayTimes(String playTimes) {
+        this.playTimes = playTimes;
+    }
+
+    public String getCollectionTimes() {
+        return collectionTimes;
+    }
+
+    public void setCollectionTimes(String collectionTimes) {
+        this.collectionTimes = collectionTimes;
     }
 }

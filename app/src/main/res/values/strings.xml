@@ -6,6 +6,8 @@
     <string name="title_speaking">Speaking</string>
     <string name="title_more">More</string>
 
+    <string name="loading">Loading</string>
+
     <string name="learning_search">搜索喜欢的影片</string>
     <string name="learning_settings_1">我的单词库</string>
     <string name="learning_settings_2">收藏的影片</string>
@@ -15,6 +17,10 @@
     <string name="learning_tab_channels">Channels</string>
     <string name="learning_tab_accents">Accents</string>
     <string name="learning_tab_videos">Videos</string>
+
+    <string name="level_beginner">Beginner</string>
+    <string name="level_intermediate">Intermediate</string>
+    <string name="level_advanced">Advanced</string>
 
     <string name="title_levels">Levels</string>
     <string name="title_channels">Channels</string>
