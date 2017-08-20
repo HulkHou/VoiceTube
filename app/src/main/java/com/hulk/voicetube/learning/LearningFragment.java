@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.hulk.voicetube.MainActivity;
 import com.hulk.voicetube.R;
 
@@ -36,6 +36,9 @@ public class LearningFragment extends Fragment {
     private FragmentTransaction fragmentTransactionTab;
     private LevelsFragment levelsFragment;
     private ChannelsFragment channelsFragment;
+
+    private MaterialDialog.Builder builder;
+    private MaterialDialog dialog;
 
 
     public LearningFragment() {
@@ -135,7 +138,8 @@ public class LearningFragment extends Fragment {
                     public void onClick(View v) {
                         int position = (int) tabView.getTag();
                         //处理点击事件
-                        showFragment(position);
+//                        showFragment(position);
+                        showTabChooseDialogs(position);
                     }
                 });
             } catch (Exception e) {
@@ -172,6 +176,7 @@ public class LearningFragment extends Fragment {
         return view;
     }
 
+    //切换Learning模块下的各个标签页
     private void showFragment(int position) {
         fragmentTransactionTab = fragmentManager.beginTransaction();
 
@@ -213,18 +218,77 @@ public class LearningFragment extends Fragment {
         fragmentTransactionTab.commit();
     }
 
-    private void showPopupMenu(View view) {
-        PopupMenu mPopupMenu = new PopupMenu(context, view.findViewById(R.id.tab_learning));
-        mPopupMenu.getMenuInflater().inflate(R.menu.levels_menu, mPopupMenu.getMenu());
-        mPopupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+    //点击标签页显示弹出框
+    private void showTabChooseDialogs(int position) {
 
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                return true;
-            }
-        });
-        mPopupMenu.show(); // 显示弹出菜单
+        switch (position) {
+            //Learning下第一个标签页 Levels的对话框
+            case 0:
+                builder = new MaterialDialog.Builder(context)
+                        .items(R.array.levels_item)
+                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                /**
+                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                                 * returning false here won't allow the newly selected radio button to actually be selected.
+                                 **/
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.choose);
+                break;
+            //Learning下第二个标签页 Channels的对话框
+            case 1:
+                builder = new MaterialDialog.Builder(context)
+                        .items(R.array.channels_item)
+                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                /**
+                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                                 * returning false here won't allow the newly selected radio button to actually be selected.
+                                 **/
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.choose);
+                break;
+            //Learning下第三个标签页 Accents的对话框
+            case 2:
+                builder = new MaterialDialog.Builder(context)
+                        .items(R.array.accents_item)
+                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                /**
+                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                                 * returning false here won't allow the newly selected radio button to actually be selected.
+                                 **/
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.choose);
+                break;
+            //Learning下第四个标签页 Videos的对话框
+            case 3:
+                builder = new MaterialDialog.Builder(context)
+                        .items(R.array.videos_item)
+                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                            @Override
+                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                /**
+                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
+                                 * returning false here won't allow the newly selected radio button to actually be selected.
+                                 **/
+                                return true;
+                            }
+                        })
+                        .positiveText(R.string.choose);
+                break;
+        }
+        dialog = builder.build();
+        dialog.show();
     }
 
 }
