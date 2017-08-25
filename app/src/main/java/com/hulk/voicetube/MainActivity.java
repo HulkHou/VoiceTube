@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.hulk.voicetube.blog.BlogFragment;
 import com.hulk.voicetube.learning.LearningFragment;
+import com.hulk.voicetube.profile.ProfileFragment;
 
 /**
  * Created by hulk-out on 2017/8/9.
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     //fragment
     LearningFragment learningFragment;
     BlogFragment blogFragment;
+    ProfileFragment profileFragment;
+
 
     //底部导航栏view
     BottomNavigationView navigationView;
@@ -65,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (blogFragment != null) {
                                     fragmentTransaction1.hide(blogFragment);
                                 }
+                                if (profileFragment != null) {
+                                    fragmentTransaction1.hide(profileFragment);
+                                }
 
                                 //如果fragment还没创建就创建一个，然后add
                                 //如果fragment已经创建了，就show
@@ -79,12 +85,31 @@ public class MainActivity extends AppCompatActivity {
                                 if (learningFragment != null) {
                                     fragmentTransaction1.hide(learningFragment);
                                 }
+                                if (profileFragment != null) {
+                                    fragmentTransaction1.hide(profileFragment);
+                                }
                                 if (blogFragment == null) {
                                     blogFragment = BlogFragment.newInstance();
                                     fragmentTransaction1.add(R.id.view_content, blogFragment);
                                 } else
                                     fragmentTransaction1.show(blogFragment);
                                 break;
+
+                            case R.id.navigation_profile:
+                                if (learningFragment != null) {
+                                    fragmentTransaction1.hide(learningFragment);
+                                }
+                                if (blogFragment != null) {
+                                    fragmentTransaction1.hide(blogFragment);
+                                }
+                                if (profileFragment == null) {
+                                    profileFragment = ProfileFragment.newInstance();
+                                    fragmentTransaction1.add(R.id.view_content, profileFragment);
+                                } else
+                                    fragmentTransaction1.show(profileFragment);
+                                break;
+
+
                         }
                         fragmentTransaction1.commit();
 
