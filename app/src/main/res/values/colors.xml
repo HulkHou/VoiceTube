@@ -14,4 +14,6 @@
     <color name="background">#8073c4</color>
     <color name="colorAccentDark">#A572CC</color>
 
+    <color name="button">#00FFFF</color>
+
 </resources>

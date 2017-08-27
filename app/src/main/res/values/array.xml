@@ -2,20 +2,20 @@
 <resources>
 
     <string-array name="levels_item">
-        <item>@string/all</item>
+        <item>@string/levels</item>
         <item>@string/level_beginner</item>
         <item>@string/level_intermediate</item>
         <item>@string/level_advanced</item>
     </string-array>
 
     <string-array name="channels_item">
-        <item>@string/all</item>
+        <item>@string/channels</item>
         <item>@string/channel_ted</item>
         <item>@string/channel_bbc</item>
     </string-array>
 
     <string-array name="accents_item">
-        <item>@string/all</item>
+        <item>@string/accents</item>
         <item>@string/accent_american</item>
         <item>@string/accent_british</item>
         <item>@string/accent_australian</item>
@@ -23,7 +23,7 @@
     </string-array>
 
     <string-array name="videos_item">
-        <item>@string/all</item>
+        <item>@string/videos</item>
         <item>@string/video_featured</item>
         <item>@string/video_trending</item>
     </string-array>

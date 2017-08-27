@@ -27,22 +27,22 @@
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/learning_tab_levels" />
+                android:text="@string/levels" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/learning_tab_channels" />
+                android:text="@string/channels" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/learning_tab_accents" />
+                android:text="@string/accents" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/learning_tab_videos" />
+                android:text="@string/videos" />
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>

@@ -7,36 +7,30 @@
     <string name="title_more">More</string>
 
     <string name="loading">Loading</string>
-    <string name="choose">Choose</string>
 
     <string name="learning_search">搜索喜欢的影片</string>
     <string name="learning_settings_1">我的单词库</string>
     <string name="learning_settings_2">收藏的影片</string>
     <string name="learning_settings_3">看过的影片</string>
 
-    <string name="learning_tab_levels">Levels</string>
-    <string name="learning_tab_channels">Channels</string>
-    <string name="learning_tab_accents">Accents</string>
-    <string name="learning_tab_videos">Videos</string>
-
-    <string name="all">All</string>
+    <string name="levels">Levels</string>
     <string name="level_beginner">Beginner</string>
     <string name="level_intermediate">Intermediate</string>
     <string name="level_advanced">Advanced</string>
 
+    <string name="channels">Channels</string>
     <string name="channel_ted">TED</string>
     <string name="channel_bbc">BBC</string>
 
+    <string name="accents">Accents</string>
     <string name="accent_american">American Accent</string>
     <string name="accent_british">British Accent</string>
     <string name="accent_australian">Australian Accent</string>
     <string name="accent_other">Other Accent</string>
 
+    <string name="videos">Videos</string>
     <string name="video_featured">Featured Videos</string>
     <string name="video_trending">Trending Videos</string>
-
-    <string name="title_levels">Levels</string>
-    <string name="title_channels">Channels</string>
 
     <string name="news_one_title">Dallas police HQ attack: Suspect believed killed during standoff</string>
     <string name="news_one_desc">and ows the dark van ramming the nose of a police car before retreating in reverse</string>

@@ -116,7 +116,7 @@ public class LearningFragment extends Fragment {
 
         //标签页增加点击事件
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
-            TabLayout.Tab tab = mTabLayout.getTabAt(i);
+            final TabLayout.Tab tab = mTabLayout.getTabAt(i);
             //这里使用到反射，拿到Tab对象后获取Class
             Class c = tab.getClass();
             try {
@@ -139,7 +139,7 @@ public class LearningFragment extends Fragment {
                         int position = (int) tabView.getTag();
                         //处理点击事件
 //                        showFragment(position);
-                        showTabChooseDialogs(position);
+                        showTabChooseDialogs(position, tab);
                     }
                 });
             } catch (Exception e) {
@@ -219,72 +219,62 @@ public class LearningFragment extends Fragment {
     }
 
     //点击标签页显示弹出框
-    private void showTabChooseDialogs(int position) {
+    private void showTabChooseDialogs(int position, TabLayout.Tab tab) {
+
+        final TabLayout.Tab showTab = tab;
 
         switch (position) {
-            //Learning下第一个标签页 Levels的对话框
+            //Learning下第一个标签页 Levels的对话框 使用BASIC LIST对话框
             case 0:
                 builder = new MaterialDialog.Builder(context)
                         .items(R.array.levels_item)
-                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                        .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
-                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                /**
-                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
-                                 * returning false here won't allow the newly selected radio button to actually be selected.
-                                 **/
-                                return true;
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                showTab.setText(text);
+                                Toast.makeText(context, text,
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        })
-                        .positiveText(R.string.choose);
+                        });
                 break;
             //Learning下第二个标签页 Channels的对话框
             case 1:
                 builder = new MaterialDialog.Builder(context)
                         .items(R.array.channels_item)
-                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                        .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
-                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                /**
-                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
-                                 * returning false here won't allow the newly selected radio button to actually be selected.
-                                 **/
-                                return true;
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                showTab.setText(text);
+                                Toast.makeText(context, text,
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        })
-                        .positiveText(R.string.choose);
+                        });
                 break;
             //Learning下第三个标签页 Accents的对话框
             case 2:
                 builder = new MaterialDialog.Builder(context)
                         .items(R.array.accents_item)
-                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                        .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
-                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                /**
-                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
-                                 * returning false here won't allow the newly selected radio button to actually be selected.
-                                 **/
-                                return true;
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                showTab.setText(text);
+                                Toast.makeText(context, text,
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        })
-                        .positiveText(R.string.choose);
+                        });
                 break;
             //Learning下第四个标签页 Videos的对话框
             case 3:
                 builder = new MaterialDialog.Builder(context)
                         .items(R.array.videos_item)
-                        .itemsCallbackSingleChoice(-1, new MaterialDialog.ListCallbackSingleChoice() {
+                        .itemsCallback(new MaterialDialog.ListCallback() {
                             @Override
-                            public boolean onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
-                                /**
-                                 * If you use alwaysCallSingleChoiceCallback(), which is discussed below,
-                                 * returning false here won't allow the newly selected radio button to actually be selected.
-                                 **/
-                                return true;
+                            public void onSelection(MaterialDialog dialog, View view, int which, CharSequence text) {
+                                showTab.setText(text);
+                                Toast.makeText(context, text,
+                                        Toast.LENGTH_SHORT).show();
                             }
-                        })
-                        .positiveText(R.string.choose);
+                        });
                 break;
         }
         dialog = builder.build();

@@ -15,7 +15,7 @@
         android:id="@+id/message_channels"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/title_channels"
+        android:text="@string/channels"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </LinearLayout>
