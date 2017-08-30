@@ -35,11 +35,11 @@ public class RegistrationFragment extends Fragment {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager = getActivity().getSupportFragmentManager();
-                LoginFragment endFragment = new LoginFragment();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.container_profile, endFragment);
-                fragmentTransaction.commit();
+//                fragmentManager = getActivity().getSupportFragmentManager();
+//                LoginFragment endFragment = new LoginFragment();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container_profile, endFragment);
+//                fragmentTransaction.commit();
             }
         });
 

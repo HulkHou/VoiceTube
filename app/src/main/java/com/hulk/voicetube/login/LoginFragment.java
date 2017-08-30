@@ -57,18 +57,18 @@ public class LoginFragment extends Fragment implements LoginContract.View{
         );
 
         //registration
-        final FloatingActionButton fab = view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View v) {
-                                       fragmentManager = getActivity().getSupportFragmentManager();
-                                       RegistrationFragment endFragment = new RegistrationFragment();
-                                       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                       fragmentTransaction.replace(R.id.container_profile, endFragment);
-                                       fragmentTransaction.commit();
-                                   }
-                               }
-        );
+//        final FloatingActionButton fab = view.findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//                                   @Override
+//                                   public void onClick(View v) {
+//                                       fragmentManager = getActivity().getSupportFragmentManager();
+//                                       RegistrationFragment endFragment = new RegistrationFragment();
+//                                       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                                       fragmentTransaction.replace(R.id.container_profile, endFragment);
+//                                       fragmentTransaction.commit();
+//                                   }
+//                               }
+//        );
         return view;
     }
 }
