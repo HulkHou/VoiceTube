@@ -1,4 +1,4 @@
-package com.hulk.voicetube.profile;
+package com.hulk.voicetube.speaking;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hulk.voicetube.MainActivity;
@@ -27,22 +29,23 @@ import com.hulk.voicetube.util.RecycleViewDivider;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfileFragment extends Fragment {
+public class SpeakingFragment extends Fragment {
 
-    private static final String TAG = "ProfileFragment";
+    private static final String TAG = "SpeakingFragment";
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private Context context = MainActivity.getInstance();
     private BottomNavigationView mBottomNavigationView;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
     private Handler handler = new Handler();
-    private List<Profile> profileList = new ArrayList<>();
+    private List<Speaking> speakingList = new ArrayList<>();
 
-    public ProfileFragment() {
+    public SpeakingFragment() {
         // Requires empty public constructor
     }
 
-    public static ProfileFragment newInstance() {
-        return new ProfileFragment();
+    public static SpeakingFragment newInstance() {
+        return new SpeakingFragment();
     }
 
     @Override
@@ -54,10 +57,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.profile_frag, container, false);
-
+        View view = inflater.inflate(R.layout.speaking_frag, container, false);
         //RecyclerView的初始化
-        mRecyclerView = view.findViewById(R.id.rcv_profile);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_speaking);
         //创建线性LinearLayoutManager
         mLayoutManager = new LinearLayoutManager(getActivity());
         //设置LayoutManager
@@ -67,10 +69,36 @@ public class ProfileFragment extends Fragment {
         //设置item的分割线
         mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL));
 //        mRecyclerView.addItemDecoration(new RecycleViewDivider(getActivity(), LinearLayoutManager.VERTICAL, R.drawable.divider_mileage));
-        MyAdapter adapter = new MyAdapter(initPersonData());
+        SpeakingFragment.MyAdapter adapter = new SpeakingFragment.MyAdapter(initPersonData());
 
         //获取主页面中底部导航
-        mBottomNavigationView = getActivity().findViewById(R.id.view_navigation);
+        mBottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.view_navigation);
+
+        //下拉刷新
+        mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.SwipeRefreshLayout_speaking);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.blueStatus);
+
+        mSwipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+//                mSwipeRefreshLayout.setRefreshing(true);
+//                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        speakingList.clear();
+                        initPersonData();
+                        mSwipeRefreshLayout.setRefreshing(false);
+                    }
+                }, 2000);
+            }
+        });
 
         //添加RecycleView滚动事件监听，实现向下滚动，隐藏底部导航栏，向上滚动，显示底部导航栏
         mRecyclerView.addOnScrollListener(new HidingScrollListener() {
@@ -109,16 +137,21 @@ public class ProfileFragment extends Fragment {
         return view;
     }
 
-    private List<Profile> initPersonData() {
-        profileList.add(new Profile("hulk", "1", "2", "3", "4", "5"));
-        return profileList;
+    private List<Speaking> initPersonData() {
+        speakingList.add(new Speaking(R.mipmap.news_one, "This is title", "This is short desc", "Hulk", "Aug 4 2017"));
+        speakingList.add(new Speaking(R.mipmap.news_one, "This is title", "This is short desc", "Hulk", "Aug 4 2017"));
+        speakingList.add(new Speaking(R.mipmap.news_one, "This is title", "This is short desc", "Hulk", "Aug 4 2017"));
+        speakingList.add(new Speaking(R.mipmap.news_one, "This is title", "This is short desc", "Hulk", "Aug 4 2017"));
+        speakingList.add(new Speaking(R.mipmap.news_one, "This is title", "This is short desc", "Hulk", "Aug 4 2017"));
+        speakingList.add(new Speaking(R.mipmap.news_one, "This is title", "This is short desc", "Hulk", "Aug 4 2017"));
+        return speakingList;
     }
 
-    class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-        private List<Profile> profileList;
+    class MyAdapter extends RecyclerView.Adapter<SpeakingFragment.MyAdapter.ViewHolder> {
+        private List<Speaking> speaking;
 
-        public MyAdapter(List<Profile> profileList) {
-            this.profileList = profileList;
+        public MyAdapter(List<Speaking> speaking) {
+            this.speaking = speaking;
         }
 
         /**
@@ -129,9 +162,9 @@ public class ProfileFragment extends Fragment {
          * @return
          */
         @Override
-        public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_item, parent, false);
-            return new MyAdapter.ViewHolder(view);
+        public SpeakingFragment.MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.speaking_item, parent, false);
+            return new SpeakingFragment.MyAdapter.ViewHolder(view);
         }
 
         /**
@@ -141,38 +174,37 @@ public class ProfileFragment extends Fragment {
          * @param position
          */
         @Override
-        public void onBindViewHolder(MyAdapter.ViewHolder holder, final int position) {
-//            holder.nickname.setText(profileList.get(position).getNickname());
-            holder.watched.setText(profileList.get(position).getWatched());
-            holder.streak.setText(profileList.get(position).getStreak());
-            holder.recorded.setText(profileList.get(position).getRecorded());
-            holder.spent.setText(profileList.get(position).getSpent());
-//            holder.collected.setText(profileList.get(position).getCollected());
-
+        public void onBindViewHolder(SpeakingFragment.MyAdapter.ViewHolder holder, final int position) {
+            holder.mImageView.setImageResource(speaking.get(position).getPhotoId());
+            holder.speakingTitle.setText(speaking.get(position).getTitle());
+            holder.author.setText(speaking.get(position).getAuthor());
+            holder.speakingDesc.setText(speaking.get(position).getDesc());
+            holder.postedTime.setText(speaking.get(position).getPostedTime());
         }
 
         @Override
         public int getItemCount() {
-            return profileList.size();
+            return speaking.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
 
-            public TextView nickname;
-            public TextView watched;
-            public TextView streak;
-            public TextView recorded;
-            public TextView spent;
-            public TextView collected;
+            public CardView mCardView;
+            public ImageView mImageView;
+            public TextView speakingTitle;
+            public TextView author;
+            public TextView speakingDesc;
+            public TextView postedTime;
+
 
             public ViewHolder(View itemView) {
                 super(itemView);
-//                nickname = itemView.findViewById(R.id.profile_nickname);
-                watched = itemView.findViewById(R.id.profile_watched);
-                streak = itemView.findViewById(R.id.profile_streak);
-                recorded = itemView.findViewById(R.id.profile_recorded);
-                spent = itemView.findViewById(R.id.profile_spent);
-//                collected = itemView.findViewById(R.id.profile_collected);
+                mCardView = itemView.findViewById(R.id.card_view_speaking);
+                mImageView = itemView.findViewById(R.id.iv_speaking_pic);
+                speakingTitle = itemView.findViewById(R.id.tv_speaking_title);
+                author = itemView.findViewById(R.id.tv_speaking_author);
+                speakingDesc = itemView.findViewById(R.id.tv_speaking_desc);
+                postedTime = itemView.findViewById(R.id.tv_speaking_posted_time);
             }
         }
     }

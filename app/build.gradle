@@ -44,6 +44,8 @@ android {
         main {
             res.srcDirs =
                     [
+                            'src/main/res/layout/more',
+                            'src/main/res/layout/speaking',
                             'src/main/res/layout/learning',
                             'src/main/res/layout/blog',
                             'src/main/res/layout/profile',

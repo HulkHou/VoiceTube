@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.hulk.voicetube.blog.BlogFragment;
 import com.hulk.voicetube.learning.LearningFragment;
 import com.hulk.voicetube.profile.ProfileFragment;
+import com.hulk.voicetube.speaking.SpeakingFragment;
 
 /**
  * Created by hulk-out on 2017/8/9.
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     LearningFragment learningFragment;
     BlogFragment blogFragment;
     ProfileFragment profileFragment;
+    SpeakingFragment speakingFragment;
 
 
     //底部导航栏view
@@ -71,7 +73,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (profileFragment != null) {
                                     fragmentTransaction1.hide(profileFragment);
                                 }
-
+                                if (speakingFragment != null) {
+                                    fragmentTransaction1.hide(speakingFragment);
+                                }
                                 //如果fragment还没创建就创建一个，然后add
                                 //如果fragment已经创建了，就show
                                 if (learningFragment == null) {
@@ -88,6 +92,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (profileFragment != null) {
                                     fragmentTransaction1.hide(profileFragment);
                                 }
+                                if (speakingFragment != null) {
+                                    fragmentTransaction1.hide(speakingFragment);
+                                }
                                 if (blogFragment == null) {
                                     blogFragment = BlogFragment.newInstance();
                                     fragmentTransaction1.add(R.id.view_content, blogFragment);
@@ -102,11 +109,31 @@ public class MainActivity extends AppCompatActivity {
                                 if (blogFragment != null) {
                                     fragmentTransaction1.hide(blogFragment);
                                 }
+                                if (speakingFragment != null) {
+                                    fragmentTransaction1.hide(speakingFragment);
+                                }
                                 if (profileFragment == null) {
                                     profileFragment = ProfileFragment.newInstance();
                                     fragmentTransaction1.add(R.id.view_content, profileFragment);
                                 } else
                                     fragmentTransaction1.show(profileFragment);
+                                break;
+
+                            case R.id.navigation_speaking:
+                                if (learningFragment != null) {
+                                    fragmentTransaction1.hide(learningFragment);
+                                }
+                                if (blogFragment != null) {
+                                    fragmentTransaction1.hide(blogFragment);
+                                }
+                                if (profileFragment != null) {
+                                    fragmentTransaction1.hide(profileFragment);
+                                }
+                                if (speakingFragment == null) {
+                                    speakingFragment = SpeakingFragment.newInstance();
+                                    fragmentTransaction1.add(R.id.view_content, speakingFragment);
+                                } else
+                                    fragmentTransaction1.show(speakingFragment);
                                 break;
 
 

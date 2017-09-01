@@ -8,70 +8,70 @@ import java.io.Serializable;
 
 public class Profile implements Serializable {
     //昵称，观看次数，持续天数，复述时间，持续学习时间
-    private String Nickname;
-    private String Watched;
-    private String Streak;
-    private String Recorded;
-    private String Spent;
-    private String Collected;
+    private String nickname;
+    private String watched;
+    private String streak;
+    private String recorded;
+    private String spent;
+    private String collected;
 
     /**
      * Constructs a new instance of {@code Object}.
      */
-    public Profile(String Nickname, String Watched, String Streak, String Recorded, String Spent, String Collected) {
-        this.Nickname = Nickname;
-        this.Watched = Watched;
-        this.Streak = Streak;
-        this.Recorded = Recorded;
-        this.Spent = Spent;
-        this.Collected = Collected;
+    public Profile(String nickname, String watched, String streak, String recorded, String spent, String collected) {
+        this.nickname = nickname;
+        this.watched = watched;
+        this.streak = streak;
+        this.recorded = recorded;
+        this.spent = spent;
+        this.collected = collected;
     }
 
     public String getNickname() {
-        return Nickname;
+        return nickname;
     }
 
     public void setNickname(String nickname) {
-        Nickname = nickname;
+        this.nickname = nickname;
     }
 
     public String getWatched() {
-        return Watched;
+        return watched;
     }
 
     public void setWatched(String watched) {
-        Watched = watched;
+        this.watched = watched;
     }
 
     public String getStreak() {
-        return Streak;
+        return streak;
     }
 
     public void setStreak(String streak) {
-        Streak = streak;
+        this.streak = streak;
     }
 
     public String getRecorded() {
-        return Recorded;
+        return recorded;
     }
 
     public void setRecorded(String recorded) {
-        Recorded = recorded;
+        this.recorded = recorded;
     }
 
     public String getSpent() {
-        return Spent;
+        return spent;
     }
 
     public void setSpent(String spent) {
-        Spent = spent;
+        this.spent = spent;
     }
 
     public String getCollected() {
-        return Collected;
+        return collected;
     }
 
     public void setCollected(String collected) {
-        Collected = collected;
+        this.collected = collected;
     }
 }
